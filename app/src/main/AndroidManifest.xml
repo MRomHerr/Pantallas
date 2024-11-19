@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pantallas"
         tools:targetApi="31">
-
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
         <!-- Pantalla1 está registrada correctamente -->
         <activity
             android:name=".Pantalla1"
-            android:exported="false" />
-
-        <!-- MainActivity es la actividad inicial -->
+            android:exported="false" /> <!-- MainActivity es la actividad inicial -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,6 +27,7 @@
             android:theme="@style/Theme.Pantallas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -33,6 +34,8 @@ class Pantalla1 : ComponentActivity() {
 
 @Composable
 fun Pantalla1Content() {
+    val context = LocalContext.current // Obtén el contexto dentro de un composable
+
     val image: Painter = painterResource(id = R.drawable.kuenkro) // Asegúrate de que tu imagen esté en drawable
 
     Column(
@@ -54,20 +57,22 @@ fun Pantalla1Content() {
         Text(
             text = "Hola lokete",
             style = TextStyle(
-                fontFamily = FontFamily.Monospace,  // Default=Roboto  SansSerif=Noto   Serif=Merriweather  Monospace=Fuentes monoespaciadas
+                fontFamily = FontFamily.Monospace,
                 fontSize = 24.sp,
                 color = Color.Black
             )
         )
-        Spacer(
-            modifier = Modifier.height(20.dp)
-        )
+        Spacer(modifier = Modifier.height(20.dp))
 
-        // Botón
-        Button(onClick = { /* Aquí puedes agregar la acción del botón */ }) {
-            Text(text = "Abuelo?!",
+        // Botón para regresar a la pantalla anterior
+        Button(onClick = {
+            // Verifica y cierra la actividad actual usando el contexto
+            (context as? ComponentActivity)?.finish()
+        }) {
+            Text(
+                text = "Abuelo?!",
                 style = TextStyle(
-                    fontFamily = FontFamily.Monospace,  // Default=Roboto  SansSerif=Noto   Serif=Merriweather  Monospace=Fuentes monoespaciadas
+                    fontFamily = FontFamily.Monospace,
                     fontSize = 24.sp,
                     color = Color.Black
                 )
