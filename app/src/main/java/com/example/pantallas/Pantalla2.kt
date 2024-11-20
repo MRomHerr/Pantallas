@@ -22,39 +22,42 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pantallas.ui.theme.PantallasTheme
 
-class Pantalla1 : ComponentActivity() {
+class Pantalla2 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PantallasTheme {
-                Pantalla1Content()
+                Pantalla2Content()
             }
         }
     }
 }
 
 @Composable
-fun Pantalla1Content() {
+fun Pantalla2Content() {
     // estado que controla la conversacion
     var dialogState by remember { mutableStateOf(0) }
     // imagen que cambiara segun el estado
-    var imageResource by remember { mutableStateOf(R.drawable.zoolander) }
+    var imageResource by remember { mutableStateOf(R.drawable.kuenkro) }
 
     val context = LocalContext.current // obtenemos el contexto dentro de un composable
     // imagenes de las conversaciones
-    val image1: Painter = painterResource(id = R.drawable.zoolander) // imagen inicial
-    val image2: Painter = painterResource(id = R.drawable.zoolander2) // imagen despues de la conversacion
+    val image1: Painter = painterResource(id = R.drawable.kuenkro) // imagen inicial
+    val image2: Painter = painterResource(id = R.drawable.knekrofeliz) // imagen despues de la conversacion
 
     // definimos el texto de la conversacion basado en el estado
     val conversationText = when (dialogState) {
-        0 -> "Estas caminando tranquilamente con lo primero que viste en el armario"
-        1 -> "Pero de pronto se te acerca un indigente"
+        0 -> "Kuenkro: Hola lokete"
+        1 -> "2: Abuelo?!"
+        2 -> "Kuenkro: ¿Unas cartitas al pokemon?"
+        3 -> "2: Venga"
+        4 -> "Kuenkro: jeje god"
         else -> "Fin de la conversacion"
     }
 
     // si la conversacion llega a "Venga", cambiamos la imagen
-    if (dialogState == 1) {
-        imageResource = R.drawable.zoolander2
+    if (dialogState == 4) {
+        imageResource = R.drawable.knekrofeliz
     }
 
     // funcion para regresar a la pantalla inicial
@@ -73,7 +76,7 @@ fun Pantalla1Content() {
         // mostrar la imagen
         Image(
             painter = painterResource(id = imageResource),
-            contentDescription = "Imagen zoolander",
+            contentDescription = "Imagen Kuenkro",
             modifier = Modifier.size(400.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
@@ -92,7 +95,7 @@ fun Pantalla1Content() {
         // boton para avanzar en la conversacion
         Button(
             onClick = {
-                if (dialogState < 1) {
+                if (dialogState < 4) {
                     dialogState++ // aumentamos el estado para avanzar en la conversacion
                 }
             }
@@ -107,20 +110,23 @@ fun Pantalla1Content() {
             )
         }
 
-        // Cuando la conversación termina (diálogo en estado 2 o más)
-        if (dialogState == 1) {
+        // mostrar el segundo boton cuando el dialogo ha terminado (estado 4)
+        if (dialogState == 4) {
             Spacer(modifier = Modifier.height(20.dp))
-            Button(onClick = {
-                val intent = Intent(context, Pantalla2::class.java)
-                context.startActivity(intent)
-            }) {
-                Text(text = "continuar",
+            Button(
+                onClick = { navigateToMainActivity() } // navegar a la MainActivity
+            ) {
+                Text(
+                    text = "Volver al inicio",
                     style = TextStyle(
-                        fontFamily = FontFamily.Monospace,  // Default=Roboto  SansSerif=Noto   Serif=Merriweather  Monospace=Fuentes monoespaciadas
-                        fontSize = 24.sp,
-                        color = Color.Black)
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 18.sp,
+                        color = Color.Black
+                    )
                 )
             }
         }
     }
 }
+
+

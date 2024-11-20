@@ -44,21 +44,25 @@ fun MainScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Se te acercó un indigente",
+
+    )
+
+    {
+        Text(text =  "Bienvenido a este kuatruple A",
             style = TextStyle(
                 fontFamily = FontFamily.Monospace,  // Default=Roboto  SansSerif=Noto   Serif=Merriweather  Monospace=Fuentes monoespaciadas
                 fontSize = 24.sp,
                 color = Color.Black)
         )
-        Spacer(modifier = Modifier.height(20.dp))
+
+    Spacer(modifier = Modifier.height(20.dp))
 
         // Botón que navega a la otra pantalla
         Button(onClick = {
             val intent = Intent(context, Pantalla1::class.java)
             context.startActivity(intent)
         }) {
-            Text(text = "Siguiente pantalla",
+            Text(text = "Nueva partida",
                 style = TextStyle(
                     fontFamily = FontFamily.Monospace,  // Default=Roboto  SansSerif=Noto   Serif=Merriweather  Monospace=Fuentes monoespaciadas
                     fontSize = 24.sp,

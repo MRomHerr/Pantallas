@@ -13,13 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pantallas"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <!-- Pantalla1 está registrada correctamente -->
-        <activity
-            android:name=".Pantalla1"
-            android:exported="false" /> <!-- MainActivity es la actividad inicial -->
+
+        <!-- Main Activity should be the launcher -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,10 +22,24 @@
             android:theme="@style/Theme.Pantallas">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Pantalla1 should be exported if you are navigating to it from other parts of the app -->
+        <activity
+            android:name=".Pantalla1"
+            android:exported="true" />
+
+        <!-- Pantalla2 should be exported as well for navigation -->
+        <activity
+            android:name=".Pantalla2"
+            android:exported="true" />
+
+        <!-- MainActivity2 if necessary -->
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
     </application>
 
 </manifest>
